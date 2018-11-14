@@ -20,15 +20,27 @@ namespace ToolMvc.Controllers
         }
 
         // GET: Tools
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string toolType, string searchString)
         {
+            IQueryable<string> typeQuery = from t in _context.Tools
+                                           orderby t.Type
+                                           select t.Type;
             var tools = from t in _context.Tools
                         select t;
             if (!String.IsNullOrEmpty(searchString))
             {
                 tools = tools.Where(a => a.Description.Contains(searchString));
             }
-            return View(await tools.ToListAsync());
+            if (!String.IsNullOrEmpty(toolType))
+            {
+                tools = tools.Where(x => x.Type == toolType);
+            }
+            var toolTypeVM = new ToolTypeViewModel();
+            toolTypeVM.Types = new SelectList(await typeQuery.Distinct().ToListAsync());
+            toolTypeVM.Tools = await tools.ToListAsync();
+            toolTypeVM.SearchString = searchString;
+
+            return View(toolTypeVM);
         }
 
         // GET: Tools/Details/5
