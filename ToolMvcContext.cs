@@ -12,5 +12,6 @@ namespace ToolMvc
         {
         }
         public DbSet<ToolMvc.Models.Tool> Tools { get; set; }
+        public DbSet<ToolMvc.Models.Place> Places { get; set; }
     }
 }
