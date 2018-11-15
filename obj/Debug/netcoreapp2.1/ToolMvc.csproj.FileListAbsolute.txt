@@ -35,3 +35,8 @@
 /Users/miloszsmac/Documents/MVC Projects/ToolMvc/obj/Debug/netcoreapp2.1/Razor/Views/Tools/Details.g.cshtml.cs
 /Users/miloszsmac/Documents/MVC Projects/ToolMvc/obj/Debug/netcoreapp2.1/Razor/Views/Tools/Edit.g.cshtml.cs
 /Users/miloszsmac/Documents/MVC Projects/ToolMvc/obj/Debug/netcoreapp2.1/Razor/Views/Tools/Index.g.cshtml.cs
+/Users/miloszsmac/Documents/MVC Projects/ToolMvc/obj/Debug/netcoreapp2.1/Razor/Views/Places/Create.g.cshtml.cs
+/Users/miloszsmac/Documents/MVC Projects/ToolMvc/obj/Debug/netcoreapp2.1/Razor/Views/Places/Delete.g.cshtml.cs
+/Users/miloszsmac/Documents/MVC Projects/ToolMvc/obj/Debug/netcoreapp2.1/Razor/Views/Places/Details.g.cshtml.cs
+/Users/miloszsmac/Documents/MVC Projects/ToolMvc/obj/Debug/netcoreapp2.1/Razor/Views/Places/Edit.g.cshtml.cs
+/Users/miloszsmac/Documents/MVC Projects/ToolMvc/obj/Debug/netcoreapp2.1/Razor/Views/Places/Index.g.cshtml.cs
