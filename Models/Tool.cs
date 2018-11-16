@@ -6,11 +6,12 @@ namespace ToolMvc.Models
 {
     public class Tool
     {
-        public int ID { get; set; }
+        public int ToolID { get; set; }
         [Required]
         public string Type { get; set; }
         [Required]
         public string Description { get; set; }
+        public int PlaceID { get; set; }
         public virtual Place Place { get; set; }
     }
 }

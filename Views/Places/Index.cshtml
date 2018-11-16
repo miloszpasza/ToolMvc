@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Actually building sites list</h2>
+<h2>Currently building sites list</h2>
 
 <p>
     <a asp-action="Create">Click here to create new building site</a>
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.PlaceDescription)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PlaceID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PlaceID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PlaceID">Delete</a>
             </td>
         </tr>
 }

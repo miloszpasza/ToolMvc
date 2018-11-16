@@ -62,7 +62,8 @@ namespace ToolMvc.Controllers
             }
 
             var tool = await _context.Tools
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .Include(p => p.Place)
+                .FirstOrDefaultAsync(m => m.ToolID == id);
             if (tool == null)
             {
                 return NotFound();
@@ -74,6 +75,7 @@ namespace ToolMvc.Controllers
         // GET: Tools/Create
         public IActionResult Create()
         {
+            PlaceList();
             return View();
         }
 
@@ -82,7 +84,7 @@ namespace ToolMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Type,Description,Place")] Tool tool)
+        public async Task<IActionResult> Create([Bind("ToolID,Type,Description,Place")] Tool tool)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +92,7 @@ namespace ToolMvc.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            PlaceList(tool.Place);
             return View(tool);
         }
 
@@ -106,6 +109,7 @@ namespace ToolMvc.Controllers
             {
                 return NotFound();
             }
+            PlaceList(tool.Place);
             return View(tool);
         }
 
@@ -114,9 +118,9 @@ namespace ToolMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Type,Description, Place")] Tool tool)
+        public async Task<IActionResult> Edit(int id, [Bind("ToolID,Type,Description, Place")] Tool tool)
         {
-            if (id != tool.ID)
+            if (id != tool.ToolID)
             {
                 return NotFound();
             }
@@ -130,7 +134,7 @@ namespace ToolMvc.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ToolExists(tool.ID))
+                    if (!ToolExists(tool.ToolID))
                     {
                         return NotFound();
                     }
@@ -141,7 +145,15 @@ namespace ToolMvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            PlaceList();
             return View(tool);
+        }
+        private void PlaceList(object selectedPlace = null)
+        {
+            var placesQuery = from p in _context.Places
+                              orderby p.PlaceAdress
+                              select p;
+            ViewBag.PlaceID = new SelectList(placesQuery.AsNoTracking(), "PlaceID", "PlaceAdress", selectedPlace);
         }
 
         // GET: Tools/Delete/5
@@ -153,7 +165,7 @@ namespace ToolMvc.Controllers
             }
 
             var tool = await _context.Tools
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ToolID == id);
             if (tool == null)
             {
                 return NotFound();
@@ -175,7 +187,7 @@ namespace ToolMvc.Controllers
 
         private bool ToolExists(int id)
         {
-            return _context.Tools.Any(e => e.ID == id);
+            return _context.Tools.Any(e => e.ToolID == id);
         }
     }
 }

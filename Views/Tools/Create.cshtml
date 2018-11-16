@@ -21,7 +21,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Place" class="control-label"></label>
-                <!-- <select asp-for="Place" asp-items="Model.Place"></select> -->
+                <option value=""> -- Select building site --</option>
+                <select asp-for="Place" class="form control" asp-items="ViewBag.PlaceID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

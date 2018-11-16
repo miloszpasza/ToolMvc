@@ -34,7 +34,7 @@ namespace ToolMvc.Controllers
             }
 
             var place = await _context.Places
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.PlaceID == id);
             if (place == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace ToolMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,PlaceAdress,PlaceDescription")] Place place)
+        public async Task<IActionResult> Create([Bind("PlaceID,PlaceAdress,PlaceDescription")] Place place)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace ToolMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,PlaceAdress,PlaceDescription")] Place place)
+        public async Task<IActionResult> Edit(int id, [Bind("PlaceID,PlaceAdress,PlaceDescription")] Place place)
         {
-            if (id != place.ID)
+            if (id != place.PlaceID)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ToolMvc.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PlaceExists(place.ID))
+                    if (!PlaceExists(place.PlaceID))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ToolMvc.Controllers
             }
 
             var place = await _context.Places
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.PlaceID == id);
             if (place == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace ToolMvc.Controllers
 
         private bool PlaceExists(int id)
         {
-            return _context.Places.Any(e => e.ID == id);
+            return _context.Places.Any(e => e.PlaceID == id);
         }
     }
 }
