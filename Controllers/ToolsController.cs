@@ -20,13 +20,17 @@ namespace ToolMvc.Controllers
         }
 
         // GET: Tools
-        public async Task<IActionResult> Index(string toolType, string searchString)
+        public async Task<IActionResult> Index(string toolType, string searchString, string placeAdress)
         {
             IQueryable<string> typeQuery = from t in _context.Tools
                                            orderby t.Type
                                            select t.Type;
+            IQueryable<string> placeQuery = from p in _context.Places
+                                            select p.PlaceAdress;
             var tools = from t in _context.Tools
                         select t;
+            var places = from p in _context.Places
+                         select p;
             if (!String.IsNullOrEmpty(searchString))
             {
                 tools = tools.Where(a => a.Description.Contains(searchString));
@@ -35,9 +39,15 @@ namespace ToolMvc.Controllers
             {
                 tools = tools.Where(x => x.Type == toolType);
             }
+            if (!String.IsNullOrEmpty(placeAdress))
+            {
+                tools = tools.Where(x => x.Place.PlaceAdress == placeAdress);
+            }
             var toolTypeVM = new ToolTypeViewModel();
             toolTypeVM.Types = new SelectList(await typeQuery.Distinct().ToListAsync());
             toolTypeVM.Tools = await tools.ToListAsync();
+            toolTypeVM.PlaceAdresses = new SelectList(await placeQuery.Distinct().ToListAsync());
+            toolTypeVM.Places = await places.ToListAsync();
             toolTypeVM.SearchString = searchString;
 
             return View(toolTypeVM);
@@ -72,7 +82,7 @@ namespace ToolMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Type,Description")] Tool tool)
+        public async Task<IActionResult> Create([Bind("ID,Type,Description,Place")] Tool tool)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +114,7 @@ namespace ToolMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Type,Description")] Tool tool)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Type,Description, Place")] Tool tool)
         {
             if (id != tool.ID)
             {

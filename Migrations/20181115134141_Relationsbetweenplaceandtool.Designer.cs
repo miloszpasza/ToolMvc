@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ToolMvc;
@@ -9,9 +10,10 @@ using ToolMvc;
 namespace ToolMvc.Migrations
 {
     [DbContext(typeof(ToolMvcContext))]
-    partial class ToolMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20181115134141_Relationsbetweenplaceandtool")]
+    partial class Relationsbetweenplaceandtool
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

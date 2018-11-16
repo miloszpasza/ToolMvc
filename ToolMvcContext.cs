@@ -13,5 +13,10 @@ namespace ToolMvc
         }
         public DbSet<ToolMvc.Models.Tool> Tools { get; set; }
         public DbSet<ToolMvc.Models.Place> Places { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ToolMvc.Models.Tool>().ToTable("Tools");
+            modelBuilder.Entity<ToolMvc.Models.Place>().ToTable("Places");
+        }
     }
 }
