@@ -117,7 +117,7 @@ namespace ToolMvc.Controllers
         // POST: Tools/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ToolID,Type,Description, PlaceID")] Tool tool)
+        public async Task<IActionResult> Edit(int id, [Bind("ToolID,Type,Description,PlaceID")] Tool tool)
         {
             if (id != tool.ToolID)
             {
@@ -143,7 +143,7 @@ namespace ToolMvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            PlaceList();
+            PlaceList(tool.PlaceID);
             return View(tool);
         }
         private void PlaceList(object selectedPlace = null)
