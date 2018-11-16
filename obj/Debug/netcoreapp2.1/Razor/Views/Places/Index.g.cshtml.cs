@@ -66,7 +66,7 @@ using ToolMvc.Models;
             WriteLiteral("\r\n<h2>Currently building sites list</h2>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(138, 65, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "51d24dea10cd40c1aad85d8237a5fdf8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "18550f8228cb41b2b0d647d15a60293f", async() => {
                 BeginContext(161, 38, true);
                 WriteLiteral("Click here to create new building site");
                 EndContext();
@@ -136,7 +136,7 @@ using ToolMvc.Models;
             WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(826, 58, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6cf6a6ffbe3d4402bae8065750f1bac8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a2b450b3455b40aab2473f6980d46250", async() => {
                 BeginContext(876, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -171,7 +171,7 @@ using ToolMvc.Models;
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(904, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3fe3bfff8bb420d8cee04e5c159e170", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "40b5e40adec94db8a726d43b9701cbc4", async() => {
                 BeginContext(957, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -206,7 +206,7 @@ using ToolMvc.Models;
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(988, 62, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "446f16bd16824be1ba7791f6687740f5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "94b1a706cf9248bbb49f46fca70ff3f0", async() => {
                 BeginContext(1040, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

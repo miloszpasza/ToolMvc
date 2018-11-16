@@ -63,6 +63,7 @@ namespace ToolMvc.Controllers
 
             var tool = await _context.Tools
                 .Include(p => p.Place)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ToolID == id);
             if (tool == null)
             {
@@ -80,11 +81,9 @@ namespace ToolMvc.Controllers
         }
 
         // POST: Tools/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ToolID,Type,Description,Place")] Tool tool)
+        public async Task<IActionResult> Create([Bind("ToolID,Type,Description,PlaceID")] Tool tool)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +91,7 @@ namespace ToolMvc.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            PlaceList(tool.Place);
+            PlaceList(tool.PlaceID);
             return View(tool);
         }
 
@@ -104,27 +103,26 @@ namespace ToolMvc.Controllers
                 return NotFound();
             }
 
-            var tool = await _context.Tools.FindAsync(id);
+            var tool = await _context.Tools
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ToolID == id);
             if (tool == null)
             {
                 return NotFound();
             }
-            PlaceList(tool.Place);
+            PlaceList(tool.PlaceID);
             return View(tool);
         }
 
         // POST: Tools/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ToolID,Type,Description, Place")] Tool tool)
+        public async Task<IActionResult> Edit(int id, [Bind("ToolID,Type,Description, PlaceID")] Tool tool)
         {
             if (id != tool.ToolID)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -165,6 +163,8 @@ namespace ToolMvc.Controllers
             }
 
             var tool = await _context.Tools
+                .Include(c => c.Place)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ToolID == id);
             if (tool == null)
             {

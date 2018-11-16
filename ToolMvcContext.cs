@@ -17,6 +17,8 @@ namespace ToolMvc
         {
             modelBuilder.Entity<ToolMvc.Models.Tool>().ToTable("Tools");
             modelBuilder.Entity<ToolMvc.Models.Place>().ToTable("Places");
+            modelBuilder.Entity<ToolMvc.Models.Tool>()
+                .HasKey(k => k.ToolID);
         }
     }
 }
